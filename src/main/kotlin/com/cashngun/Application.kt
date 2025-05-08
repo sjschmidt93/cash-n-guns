@@ -56,7 +56,7 @@ fun main() {
     roundNumber++
   }
 
-  val playersWithLootCards = players.map { (it.name to it.lootCards.map { getLootString(it) }) }
+  val playersWithLootCards = players.map { (it.name to calculateEndGameTotalForPlayer(it, players)) }
   println()
   println("Results: $playersWithLootCards")
   val winner = determineWinner(players)

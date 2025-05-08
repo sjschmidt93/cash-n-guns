@@ -7,6 +7,8 @@ data class Player(
 
   var numClickCards: Int = 5,
   var numBangCards: Int = 3,
+
+  var isGodFather: Boolean = false
 )
 
 enum class BulletCard {

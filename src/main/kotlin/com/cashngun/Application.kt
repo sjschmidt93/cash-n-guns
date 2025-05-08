@@ -3,18 +3,23 @@ package com.cashngun
 fun main() {
   val lootDeck = INITIAL_DECK
   val numberOfPlayers = 3
+  var roundNumber = 1
 
   val players = listOf(
-    Player(name = "Frank"),
+    Player(name = "Frank", isGodFather = true),
     Player(name = "Dan"),
     Player(name = "Steven")
   )
 
   while(!lootDeck.isEmpty()) {
+    printRoundAndGodFather(roundNumber, players)
     val lootForThisRound = getLootForThisRound(lootDeck)
     printLootForThisRound(lootForThisRound)
 
     val choices = playersChooseBulletCards(players)
+    
+    changeGodFather(players)
+    roundNumber++
   }
 }
 
@@ -59,7 +64,7 @@ fun playersChooseBulletCards(players: List<Player>): List<BulletCard> {
       }
     }
 
-    println("${it.name} chose ${chosenCard}")
+    println("${it.name} chose ${chosenCard}\n")
 
     chosenCard
   }
@@ -79,4 +84,17 @@ fun printLootForThisRound(loot: List<LootCard>) {
   }
 
   println("")
+}
+
+fun printRoundAndGodFather(roundNumber: Int, players: List<Player>) {
+  println("Round ${roundNumber}")
+  println("Godfather: ${players.find { it.isGodFather }?.name}\n")
+}
+
+fun changeGodFather(players: List<Player>) {
+  val godFather = players.indexOfFirst { it.isGodFather }
+  val newGodFatherIndex = (godFather + 1) % players.size
+
+  players[godFather].isGodFather = false
+  players[newGodFatherIndex].isGodFather = true
 }

@@ -49,6 +49,10 @@ fun main() {
     changeGodFather(players)
     roundNumber++
   }
+
+  val winner = determineWinner(players)
+  println()
+  println("The winner is: ${winner.name}!")
 }
 
 fun resolvePointing(

@@ -19,7 +19,7 @@ fun main() {
   val lootDeck = INITIAL_DECK
   var roundNumber = 1
 
-  val players = mutableListOf(
+  var players = mutableListOf(
     Player(name = "Frank", isGodFather = true),
     Player(name = "Dan"),
     Player(name = "Steven"),
@@ -46,10 +46,12 @@ fun main() {
     val playerPositions = courage(players).toMutableList();
     println("")
 
-    val resolvePointing = resolvePointing(bulletCards, playersPointingGuns, playerPositions, players)
+    players = resolvePointing(bulletCards, playersPointingGuns, playerPositions, players)
+
+    collectLoot(players)
 
     // End of round
-    changeGodFather(players)
+    changeGodFather(players, lootForThisRound)
     roundNumber++
   }
 
@@ -58,29 +60,36 @@ fun main() {
   println("The winner is: ${winner.name}!")
 }
 
+fun collectLoot(players: MutableList<Player>, lootForThisRound: List<LootCard>) {
+  players.forEach { player ->
+    
+  }
+}
+
 fun resolvePointing(
   bulletCards: List<BulletCard>,
   playersPointingGuns: MutableList<Pair<Player, Player>>,
   playerPositions: MutableList<PlayerPosition>,
   players: MutableList<Player>
-) {
+) : MutableList<Player> {
   println("Step 6: Card effects")
+
   playersPointingGuns.forEachIndexed { idx, pair ->
     val playerPointing = pair.first
     val playerPointingBulletCard = bulletCards[idx]
     val playerBeingPointedAt = pair.second
     val playerBeingPointedAtPosition = playerPositions[idx]
 
+    println("${playerPointing.name} fires a ${playerPointingBulletCard} at ${playerBeingPointedAt.name} who is ${playerBeingPointedAtPosition}")
+
     if (playerBeingPointedAtPosition == PlayerPosition.LAYING_DOWN) {
 
     } else {
 
       if (playerPointingBulletCard == BulletCard.BANG) {
-        println("${playerPointing.name} shoots ${playerBeingPointedAt.name} and they lose 1 health")
+        println("${playerBeingPointedAt.name} loses 1 health, their health is now ${playerBeingPointedAt.health}")
         playerBeingPointedAt.health--
         playerPositions[idx] = PlayerPosition.LAYING_DOWN
-      } else {
-        println("${playerPointing.name} fires a click at ${playerBeingPointedAt.name}")
       }
     }
     println("")
@@ -89,10 +98,10 @@ fun resolvePointing(
   players.forEach { player ->
     if (player.health <= 0) {
       println("${player.name} is dead")
-      val indexToRemove = players.indexOf(player)
-      players.removeAt(indexToRemove)
     }
   }
+
+  return players.filter { player -> player.health > 0 }.toMutableList()
 }
 
 fun playersPointGuns(players: List<Player>): MutableList<Pair<Player, Player>> {

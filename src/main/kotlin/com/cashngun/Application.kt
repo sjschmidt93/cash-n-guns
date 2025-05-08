@@ -32,18 +32,57 @@ fun main() {
     val lootForThisRound = getLootForThisRound(lootDeck)
 
     val choices = playersChooseBulletCards(players)
-    
+
+    val playersPointingGuns = playersPointGuns(players)
+
+    val playerPositions = courage(players)
+
+    // End of round
     changeGodFather(players)
     roundNumber++
   }
 }
 
-// fun holdup(players: List<Player>): Pair<Player, Player> {
-//   players.map {
-//     println("${it.name} choose your target")
-//     println("")
-//   }
-// }
+fun playersPointGuns(players: List<Player>): List<Player> {
+  val players = players.map { player ->
+    println("\n${player.name}: Choose a player to point your gun at:")
+
+    players.filterNot { p -> p.name == player.name }.forEachIndexed { index, player ->
+      println("${index + 1}) ${player.name}")
+    }
+
+    val playerToPointAtPrompt = getChoice(players.size - 1)
+    
+    val playerToPointAt = playerToPointAtPrompt - 1
+    println("${player.name} points their gun at ${players[playerToPointAt].name}")
+    players[playerToPointAt]
+  }
+
+  println("")
+
+  return players
+}
+
+enum class PlayerPosition {
+  LAYING_DOWN,
+  STANDING
+}
+
+fun courage(players: List<Player>): List<PlayerPosition> {
+  return players.map {
+    println("${it.name}: Lay down or stay standing")
+    when (getChoice(2)) { 
+      1 -> {
+        println("${it.name} lays down")
+        PlayerPosition.LAYING_DOWN
+      }
+      else -> {
+        println("${it.name} stays standing")
+        PlayerPosition.STANDING
+      }
+    }
+  }
+}
 
 fun playersChooseBulletCards(players: List<Player>): List<BulletCard> {
   println("Choose your action:")

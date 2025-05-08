@@ -1,3 +1,4 @@
+package com.cashngun
 
 data class Player(
   val health: Int = 3,

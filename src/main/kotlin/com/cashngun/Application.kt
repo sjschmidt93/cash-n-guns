@@ -10,7 +10,7 @@ fun main() {
   )
 
   while(!lootDeck.isEmpty()) {
-    val lootForThisRound = getLootForThisRound(deck)
+    val lootForThisRound = getLootForThisRound(lootDeck)
 
     playersChooseBulletCards()
   }

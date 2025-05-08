@@ -24,6 +24,8 @@ fun main() {
     Player(name = "Erik")
   )
 
+  val bulletCardDiscardPile = mutableListOf<BulletCard>()
+
   while(!lootDeck.isEmpty()) {
     printRoundAndGodFather(roundNumber, players)
 
@@ -46,14 +48,15 @@ fun main() {
 
     players = resolvePointing(bulletCards, playersPointingGuns, playerPositions, players)
 
-    collectLoot(players, lootForThisRound)
+    collectLoot(players, lootForThisRound, bulletCardDiscardPile)
 
     // End of round
+    bulletCardDiscardPile.addAll(bulletCards)
     changeGodFather(players)
     roundNumber++
   }
 
-  val playersWithLootCards = players.map { (it.name to it.lootCards) }
+  val playersWithLootCards = players.map { (it.name to it.lootCards.map { getLootString(it) }) }
   println()
   println("Results: $playersWithLootCards")
   val winner = determineWinner(players)
@@ -61,9 +64,36 @@ fun main() {
   winner?.let { println("The winner is: ${it.name}!") } ?: println("Nobody wins!")
 }
 
-fun collectLoot(players: MutableList<Player>, lootForThisRound: List<LootCard>) {
+fun collectLoot(players: MutableList<Player>, lootForThisRound: MutableList<LootCard>, bulletCardDiscardPile: MutableList<BulletCard>) {
   players.forEach { player ->
-    
+    println("${player.name}: choose your loot")
+
+    val choice = getChoice(lootForThisRound.size)
+    val lootToCollect = lootForThisRound[choice - 1]
+    player.lootCards.add(lootToCollect)
+    lootForThisRound.remove(lootToCollect)
+
+    if (lootToCollect.type == LootCardType.FIRST_AID_KIT) {
+      player.wounds = 0
+    }
+
+    println("${player.name} collects ${getLootString(lootToCollect)}")
+
+    if (lootToCollect.type == LootCardType.CLIP) {
+      when {
+        player.numClickCards == 0 -> {} // swap bang for a bang
+        bulletCardDiscardPile.none { it == BulletCard.BANG } -> {} // no bang cards to take
+        player.numClickCards == 0 && player.numBangCards == 0 -> {}
+        else -> {
+          println("${player.name} gains bang card")
+
+          player.numClickCards--
+          player.numBangCards++
+          bulletCardDiscardPile.remove(BulletCard.BANG)
+          bulletCardDiscardPile.add(BulletCard.CLICK)
+        }
+      }
+    }
   }
 }
 
@@ -239,16 +269,20 @@ fun printLootForThisRound(loot: List<LootCard>) {
   println("Loot for this round:")
 
   loot.forEach {
-    when (it.type) {
-      LootCardType.CASH -> println("• ${it.value} cash")
-      LootCardType.PAINTING -> println("• Painting") 
-      LootCardType.CLIP -> println("• Clip")
-      LootCardType.DIAMOND -> println("• Diamond worth ${it.value}")
-      LootCardType.FIRST_AID_KIT -> println("• First Aid Kit")
-    }
+    println("• ${getLootString(it)}")
   }
 
   println("")
+}
+
+fun getLootString(loot: LootCard): String {
+  return when (loot.type) {
+    LootCardType.CASH -> "cash worth ${loot.value}"
+    LootCardType.PAINTING -> "painting"
+    LootCardType.CLIP -> "clip"
+    LootCardType.DIAMOND -> "diamond worth ${loot.value}"
+    LootCardType.FIRST_AID_KIT -> "first aid kit"
+  }
 }
 
 fun printRoundAndGodFather(roundNumber: Int, players: List<Player>) {

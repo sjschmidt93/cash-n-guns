@@ -18,8 +18,8 @@ fun main() {
   var roundNumber = 1
 
   var players = mutableListOf(
-    Player(name = "Frank", isGodFather = true),
-    Player(name = "Dan"),
+    Player(name = "Frank", isGodFather = false),
+    Player(name = "Dan", isGodFather = true),
     Player(name = "Steven"),
     Player(name = "Erik")
   )
@@ -61,35 +61,24 @@ fun main() {
   winner?.let { println("The winner is: ${it.name}!") } ?: println("Nobody wins!")
 }
 
-fun <T> shiftList(list: List<T>, startIndex: Int): List<T> {
-  val size = list.size
-  if (size == 0) return list
-  val normalizedIndex = (startIndex % size + size) % size // Handle negative or out-of-bounds indices
-  return list.subList(normalizedIndex, size) + list.subList(0, normalizedIndex)
-}
-
 fun createAndSortPlayersEligibleForLoot(players: List<Player>): List<Player> {
-  val playersStanding = mutableListOf<Player>()
   val godFatherIndex = players.indexOfFirst { it.isGodFather }
+  val playersStanding = players.filter { it.playerPosition == PlayerPosition.STANDING }
+  val sortedPlayers = mutableListOf<Player>()
+  var i = godFatherIndex
 
-  val standingPlayers = players.filter { it.playerPosition == PlayerPosition.STANDING }
-
-  val godFatherIsStanding = players.first { it.isGodFather }.playerPosition == PlayerPosition.STANDING
-  if (godFatherIsStanding) {
-    val godFatherIndexInStandingPlayer = standingPlayers.indexOfFirst { it.isGodFather }
-    return shiftList(standingPlayers, godFatherIndexInStandingPlayer)
+  while (sortedPlayers.size != playersStanding.size) {
+    if (players[i].playerPosition ==  PlayerPosition.STANDING) {
+      sortedPlayers.add(players[i])
+    }
+    i = (i + 1) % players.size
   }
 
-  val firstStandingNextToGodFather = players.first { players.indexOf(it) >= godFatherIndex }
-  return shiftList(standingPlayers, godFatherIndex)
-//  val godFatherIndex = players.indexOfFirst { it.isGodFather }
-//  val indexToStartWith = if (godFatherIndex >= 0) godFatherIndex else godFatherIndex + 1
-//  val standingPlayers = players.filter { it.playerPosition == PlayerPosition.STANDING }
-//  return shiftList(standingPlayers, indexToStartWith)
+  return sortedPlayers
 }
 
 fun collectLoot(players: MutableList<Player>, lootForThisRound: MutableList<LootCard>, bulletCardDiscardPile: MutableList<BulletCard>) {
-  players.forEach { player ->
+  createAndSortPlayersEligibleForLoot(players).forEach { player ->
     println("${player.name}: choose your loot")
 
     val choice = getChoice(lootForThisRound.size)

@@ -5,7 +5,8 @@ enum class LootCardType {
   PAINTING,
   CLIP,
   DIAMOND,
-  FIRST_AID_KIT
+  FIRST_AID_KIT,
+  GODFATHER
 }
 
 data class LootCard(
@@ -40,6 +41,7 @@ fun getLootForThisRound(deck: MutableList<LootCard>): MutableList<LootCard> {
     lootForThisRound.add(card)
   }
 
+  lootForThisRound.add(LootCard(LootCardType.GODFATHER))
   printLootForThisRound(lootForThisRound)
 
   return lootForThisRound

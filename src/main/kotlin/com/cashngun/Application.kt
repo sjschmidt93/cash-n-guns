@@ -39,20 +39,17 @@ fun main() {
     val playerToRedirect = godFatherPrivilege(players)
     println("")
 
-    playerToRedirect.let {
-      redirectPlayer(playerToRedirect, playersPointingGuns)
-    }
+    redirectPlayer(playerToRedirect, playersPointingGuns)
 
-    val playerPositions = courage(players).toMutableList();
+    courage(players)
     println("")
 
-    players = resolvePointing(bulletCards, playersPointingGuns, playerPositions, players)
+    players = resolvePointing(bulletCards, playersPointingGuns, players)
 
     collectLoot(players, lootForThisRound, bulletCardDiscardPile)
 
     // End of round
     bulletCardDiscardPile.addAll(bulletCards)
-    changeGodFather(players)
     roundNumber++
   }
 
@@ -62,6 +59,33 @@ fun main() {
   val winner = determineWinner(players)
   println()
   winner?.let { println("The winner is: ${it.name}!") } ?: println("Nobody wins!")
+}
+
+fun <T> shiftList(list: List<T>, startIndex: Int): List<T> {
+  val size = list.size
+  if (size == 0) return list
+  val normalizedIndex = (startIndex % size + size) % size // Handle negative or out-of-bounds indices
+  return list.subList(normalizedIndex, size) + list.subList(0, normalizedIndex)
+}
+
+fun createAndSortPlayersEligibleForLoot(players: List<Player>): List<Player> {
+  val playersStanding = mutableListOf<Player>()
+  val godFatherIndex = players.indexOfFirst { it.isGodFather }
+
+  val standingPlayers = players.filter { it.playerPosition == PlayerPosition.STANDING }
+
+  val godFatherIsStanding = players.first { it.isGodFather }.playerPosition == PlayerPosition.STANDING
+  if (godFatherIsStanding) {
+    val godFatherIndexInStandingPlayer = standingPlayers.indexOfFirst { it.isGodFather }
+    return shiftList(standingPlayers, godFatherIndexInStandingPlayer)
+  }
+
+  val firstStandingNextToGodFather = players.first { players.indexOf(it) >= godFatherIndex }
+  return shiftList(standingPlayers, godFatherIndex)
+//  val godFatherIndex = players.indexOfFirst { it.isGodFather }
+//  val indexToStartWith = if (godFatherIndex >= 0) godFatherIndex else godFatherIndex + 1
+//  val standingPlayers = players.filter { it.playerPosition == PlayerPosition.STANDING }
+//  return shiftList(standingPlayers, indexToStartWith)
 }
 
 fun collectLoot(players: MutableList<Player>, lootForThisRound: MutableList<LootCard>, bulletCardDiscardPile: MutableList<BulletCard>) {
@@ -75,6 +99,11 @@ fun collectLoot(players: MutableList<Player>, lootForThisRound: MutableList<Loot
 
     if (lootToCollect.type == LootCardType.FIRST_AID_KIT) {
       player.wounds = 0
+    }
+
+    if (lootToCollect.type == LootCardType.GODFATHER) {
+      players.first { it.isGodFather }.isGodFather = false
+      player.isGodFather = true
     }
 
     println("${player.name} collects ${getLootString(lootToCollect)}")
@@ -100,7 +129,6 @@ fun collectLoot(players: MutableList<Player>, lootForThisRound: MutableList<Loot
 fun resolvePointing(
   bulletCards: List<BulletCard>,
   playersPointingGuns: MutableList<Pair<Player, Player>>,
-  playerPositions: MutableList<PlayerPosition>,
   players: MutableList<Player>
 ) : MutableList<Player> {
   println("Step 6: Card effects")
@@ -109,7 +137,7 @@ fun resolvePointing(
     val playerPointing = pair.first
     val playerPointingBulletCard = bulletCards[idx]
     val playerBeingPointedAt = pair.second
-    val playerBeingPointedAtPosition = playerPositions[idx]
+    val playerBeingPointedAtPosition = playerBeingPointedAt.playerPosition
 
     println("${playerPointing.name} fires a ${playerPointingBulletCard} at ${playerBeingPointedAt.name} who is ${playerBeingPointedAtPosition}")
 
@@ -120,7 +148,7 @@ fun resolvePointing(
       if (playerPointingBulletCard == BulletCard.BANG) {
         playerBeingPointedAt.wounds++
         println("${playerBeingPointedAt.name} gains 1 wound, they now have ${playerBeingPointedAt.wounds} wounds")
-        playerPositions[idx] = PlayerPosition.LAYING_DOWN
+        playerBeingPointedAt.playerPosition = PlayerPosition.LAYING_DOWN
       }
     }
     println("")
@@ -200,18 +228,18 @@ enum class PlayerPosition {
   STANDING
 }
 
-fun courage(players: MutableList<Player>): List<PlayerPosition> {
+fun courage(players: MutableList<Player>) {
   println("Step 5: Courage")
-  return players.map {
+  players.forEach {
     println("${it.name}: Lay down or stay standing")
     when (getChoice(2)) { 
       1 -> {
         println("${it.name} lays down")
-        PlayerPosition.LAYING_DOWN
+        it.playerPosition = PlayerPosition.LAYING_DOWN
       }
       else -> {
         println("${it.name} stays standing")
-        PlayerPosition.STANDING
+        it.playerPosition = PlayerPosition.STANDING
       }
     }
   }
@@ -282,6 +310,7 @@ fun getLootString(loot: LootCard): String {
     LootCardType.CLIP -> "clip"
     LootCardType.DIAMOND -> "diamond worth ${loot.value}"
     LootCardType.FIRST_AID_KIT -> "first aid kit"
+    LootCardType.GODFATHER -> "godfather card"
   }
 }
 
@@ -289,12 +318,3 @@ fun printRoundAndGodFather(roundNumber: Int, players: List<Player>) {
   println("Round ${roundNumber}")
   println("Godfather: ${players.find { it.isGodFather }?.name}\n")
 }
-
-fun changeGodFather(players: List<Player>) {
-  val godFather = players.indexOfFirst { it.isGodFather }
-  val newGodFatherIndex = (godFather + 1) % players.size
-
-  players[godFather].isGodFather = false
-  players[newGodFatherIndex].isGodFather = true
-}
-

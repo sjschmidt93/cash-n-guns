@@ -9,6 +9,7 @@ data class Player(
   var numBangCards: Int = 3,
 
   var isGodFather: Boolean = false,
+  var playerPosition: PlayerPosition = PlayerPosition.STANDING,
 
   val lootCards: MutableList<LootCard> = mutableListOf(),
 )

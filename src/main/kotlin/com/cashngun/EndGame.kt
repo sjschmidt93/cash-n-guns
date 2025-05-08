@@ -1,5 +1,14 @@
 package com.cashngun
 
+fun determineWinner(players: List<Player>): Player {
+    val playerScores = players.associateWith {
+        calculateEndGameTotalForPlayer(it, players)
+    }
+
+    val maxScore = playerScores.values.maxOrNull() ?: 0
+    return playerScores.filter { it.value == maxScore }.keys.first()
+}
+
 fun calculateEndGameTotalForPlayer(player: Player, players: List<Player>): Int {
     val lootCards = player.lootCards
     val paintings = lootCards.filter { it.type == LootCardType.PAINTING }

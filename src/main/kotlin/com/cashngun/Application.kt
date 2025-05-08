@@ -13,8 +13,8 @@ fun main() {
 
   while(!lootDeck.isEmpty()) {
     printRoundAndGodFather(roundNumber, players)
+
     val lootForThisRound = getLootForThisRound(lootDeck)
-    printLootForThisRound(lootForThisRound)
 
     val choices = playersChooseBulletCards(players)
     

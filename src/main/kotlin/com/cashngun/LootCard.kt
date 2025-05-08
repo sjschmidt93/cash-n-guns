@@ -39,5 +39,7 @@ fun getLootForThisRound(deck: MutableList<LootCard>): List<LootCard> {
     lootForThisRound.add(card)
   }
 
+  printLootForThisRound(lootForThisRound)
+
   return lootForThisRound
 }

@@ -8,7 +8,9 @@ data class Player(
   var numClickCards: Int = 5,
   var numBangCards: Int = 3,
 
-  var isGodFather: Boolean = false
+  var isGodFather: Boolean = false,
+
+  val lootCards: MutableList<LootCard> = mutableListOf(),
 )
 
 enum class BulletCard {

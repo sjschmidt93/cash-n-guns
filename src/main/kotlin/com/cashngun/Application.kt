@@ -48,10 +48,10 @@ fun main() {
 
     players = resolvePointing(bulletCards, playersPointingGuns, playerPositions, players)
 
-    collectLoot(players)
+    collectLoot(players, lootForThisRound)
 
     // End of round
-    changeGodFather(players, lootForThisRound)
+    changeGodFather(players)
     roundNumber++
   }
 

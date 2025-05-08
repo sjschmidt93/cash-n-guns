@@ -4,8 +4,8 @@ fun main() {
   val lootDeck = INITIAL_DECK
 
   while(!lootDeck.isEmpty()) {
-    val lootForThisRound = getLootForThisRound(deck)
+    val lootForThisRound = getLootForThisRound(lootDeck)
 
-    println("deck size: ${deck.size}")
+    println("deck size: ${lootDeck.size}")
   }
 }

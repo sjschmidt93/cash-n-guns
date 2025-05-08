@@ -32,16 +32,19 @@ fun main() {
     val lootForThisRound = getLootForThisRound(lootDeck)
 
     val bulletCards = playersChooseBulletCards(players)
+    println("")
 
     val playersPointingGuns = playersPointGuns(players)
 
     val playerToRedirect = godFatherPrivilege(players)
+    println("")
 
     playerToRedirect.let {
       redirectPlayer(playerToRedirect, playersPointingGuns)
     }
 
     val playerPositions = courage(players).toMutableList();
+    println("")
 
     val resolvePointing = resolvePointing(bulletCards, playersPointingGuns, playerPositions, players)
 
@@ -61,6 +64,7 @@ fun resolvePointing(
   playerPositions: MutableList<PlayerPosition>,
   players: MutableList<Player>
 ) {
+  println("Step 6: Card effects")
   playersPointingGuns.forEachIndexed { idx, pair ->
     val playerPointing = pair.first
     val playerPointingBulletCard = bulletCards[idx]
@@ -78,8 +82,8 @@ fun resolvePointing(
       } else {
         println("${playerPointing.name} fires a click at ${playerBeingPointedAt.name}")
       }
-
     }
+    println("")
   }
 
   players.forEach { player ->
@@ -92,6 +96,7 @@ fun resolvePointing(
 }
 
 fun playersPointGuns(players: List<Player>): MutableList<Pair<Player, Player>> {
+  println("Step 3: Hold-Up")
   val playerPairs = players.map { player ->
     println("\n${player.name}: Choose a player to point your gun at:")
 
@@ -115,11 +120,12 @@ fun playersPointGuns(players: List<Player>): MutableList<Pair<Player, Player>> {
 }
 
 fun godFatherPrivilege(players: List<Player>): Player? {
+  println("Step 4: Godfather's Privilege")
   val godfather = players.first{it.isGodFather}
   val otherPlayers = players.filterNot { it.isGodFather }
   println("\n${godfather.name}: Order another player to change target:")
   otherPlayers.forEachIndexed { index, it ->
-    println("L80: ${index + 1}) ${it.name}")
+    println("${index + 1}) ${it.name}")
   }
   println("${otherPlayers.size + 1}) Nobody")
   val choice = getChoice(otherPlayers.size + 1)
@@ -144,7 +150,8 @@ fun redirectPlayer(player: Player?, playerPairs: MutableList<Pair<Player, Player
     val indexToRemove = playerPairs.indexOfFirst { it.first == player }
     playerPairs.removeAt(indexToRemove)
     playerPairs.add(Pair(player, newTargetChoices[choice]))
-    println("GODFATHER PRIVIELEGEIEGE${player.name} redirects and points their gun at ${newTargetChoices[choice].name}")
+    println("${player.name} redirects and points their gun at ${newTargetChoices[choice].name}")
+    println("")
   }
 }
 
@@ -154,6 +161,7 @@ enum class PlayerPosition {
 }
 
 fun courage(players: MutableList<Player>): List<PlayerPosition> {
+  println("Step 5: Courage")
   return players.map {
     println("${it.name}: Lay down or stay standing")
     when (getChoice(2)) { 
@@ -170,6 +178,7 @@ fun courage(players: MutableList<Player>): List<PlayerPosition> {
 }
 
 fun playersChooseBulletCards(players: List<Player>): List<BulletCard> {
+  println("Step 2: Choice of the Bullet card")
   println("Choose your action:")
   println("1) Bullet")
   println("2) Click\n")

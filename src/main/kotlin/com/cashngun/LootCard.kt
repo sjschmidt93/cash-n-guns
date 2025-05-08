@@ -32,6 +32,7 @@ val INITIAL_DECK = listOf(
 private val LOOT_CARDS_PER_ROUND = 8
 
 fun getLootForThisRound(deck: MutableList<LootCard>): List<LootCard> {
+  println("Step 1: Loot")
   val lootForThisRound = mutableListOf<LootCard>()
 
   while(lootForThisRound.size < LOOT_CARDS_PER_ROUND) {

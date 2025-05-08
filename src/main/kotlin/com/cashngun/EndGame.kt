@@ -1,12 +1,13 @@
 package com.cashngun
 
-fun determineWinner(players: List<Player>): Player {
+fun determineWinner(players: List<Player>): Player? {
     val playerScores = players.associateWith {
         calculateEndGameTotalForPlayer(it, players)
     }
 
     val maxScore = playerScores.values.maxOrNull() ?: 0
-    return playerScores.filter { it.value == maxScore }.keys.first()
+    val playersWithMaxScore = playerScores.filter { it.value == maxScore }.keys
+    return if (playersWithMaxScore.size == 1) playersWithMaxScore.first() else null
 }
 
 fun calculateEndGameTotalForPlayer(player: Player, players: List<Player>): Int {

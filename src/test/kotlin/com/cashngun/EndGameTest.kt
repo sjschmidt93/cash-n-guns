@@ -1,6 +1,7 @@
 package com.cashngun
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class EndGameTest {
     @Test
@@ -99,6 +100,27 @@ class EndGameTest {
             ))
         val players = listOf(playerToTest, otherPlayer)
         val result = determineWinner(players)
-        assertEquals("Player 1", result.name)
+        assertEquals("Player 1", result?.name)
+    }
+
+    @Test
+    fun handleTies() {
+        val lootCards = mutableListOf(
+            LootCard(LootCardType.CASH, 5000),
+            LootCard(LootCardType.DIAMOND, 5000),
+            LootCard(LootCardType.DIAMOND, 10000),
+            LootCard(LootCardType.PAINTING),
+        )
+        val playerToTest = Player(name = "Player 1", lootCards = lootCards)
+        val otherPlayer = Player(name = "Player 2", lootCards =
+            mutableListOf(
+                LootCard(LootCardType.CASH, 5000),
+                LootCard(LootCardType.DIAMOND, 5000),
+                LootCard(LootCardType.DIAMOND, 10000),
+                LootCard(LootCardType.PAINTING),
+            ))
+        val players = listOf(playerToTest, otherPlayer)
+        val result = determineWinner(players)
+        assertNull(result)
     }
 }

@@ -55,9 +55,12 @@ fun main() {
     roundNumber++
   }
 
+  val playersWithLootCards = players.map { (it.name to it.lootCards) }
+  println()
+  println("Results: $playersWithLootCards")
   val winner = determineWinner(players)
   println()
-  println("The winner is: ${winner.name}!")
+  winner?.let { println("The winner is: ${it.name}!") } ?: println("Nobody wins!")
 }
 
 fun collectLoot(players: MutableList<Player>, lootForThisRound: List<LootCard>) {

@@ -43,24 +43,27 @@ fun main() {
   }
 }
 
-fun playersPointGuns(players: List<Player>): List<Player> {
-  val players = players.map { player ->
+fun playersPointGuns(players: List<Player>): List<Pair<Player, Player>> {
+  val playerPairs = players.map { player ->
     println("\n${player.name}: Choose a player to point your gun at:")
 
-    players.filterNot { p -> p.name == player.name }.forEachIndexed { index, player ->
-      println("${index + 1}) ${player.name}")
+    val otherPlayers = players.filterNot { p -> p.name == player.name }
+    
+    otherPlayers.forEachIndexed { index, it ->
+      println("${index + 1}) ${it.name}")
     }
 
-    val playerToPointAtPrompt = getChoice(players.size - 1)
+    val playerToPointAtPrompt = getChoice(otherPlayers.size)
     
     val playerToPointAt = playerToPointAtPrompt - 1
-    println("${player.name} points their gun at ${players[playerToPointAt].name}")
-    players[playerToPointAt]
+    println("${player.name} points their gun at ${otherPlayers[playerToPointAt].name}")
+
+    Pair(player, otherPlayers[playerToPointAt])
   }
 
   println("")
 
-  return players
+  return playerPairs
 }
 
 enum class PlayerPosition {

@@ -1,14 +1,14 @@
 package com.cashngun
 
 data class Player(
-  val health: Int = 3,
-  val bulletCards: List<BulletCard> = listOf(
-    *Array(5) { BulletCard.CLICK },
-    *Array(3) { BulletCard.BANG }
-  ),
-  val name: String
+  val name: String,
+
+  var health: Int = 3,
+
+  var numClickCards: Int = 5,
+  var numBangCards: Int = 3,
 )
 
 enum class BulletCard {
-  CLICK, BANG
+  CLICK, BANG, INVALID
 }

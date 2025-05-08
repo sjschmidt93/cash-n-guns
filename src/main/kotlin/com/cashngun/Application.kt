@@ -19,7 +19,7 @@ fun main() {
   val lootDeck = INITIAL_DECK
   var roundNumber = 1
 
-  val players = listOf(
+  val players = mutableListOf(
     Player(name = "Frank", isGodFather = true),
     Player(name = "Dan"),
     Player(name = "Steven"),
@@ -31,7 +31,7 @@ fun main() {
 
     val lootForThisRound = getLootForThisRound(lootDeck)
 
-    val choices = playersChooseBulletCards(players)
+    val bulletCards = playersChooseBulletCards(players)
 
     val playersPointingGuns = playersPointGuns(players)
 
@@ -41,11 +41,49 @@ fun main() {
       redirectPlayer(playerToRedirect, playersPointingGuns)
     }
 
-    val playerPositions = courage(players)
+    val playerPositions = courage(players).toMutableList();
+
+    val resolvePointing = resolvePointing(bulletCards, playersPointingGuns, playerPositions, players)
 
     // End of round
     changeGodFather(players)
     roundNumber++
+  }
+}
+
+fun resolvePointing(
+  bulletCards: List<BulletCard>,
+  playersPointingGuns: MutableList<Pair<Player, Player>>,
+  playerPositions: MutableList<PlayerPosition>,
+  players: MutableList<Player>
+) {
+  playersPointingGuns.forEachIndexed { idx, pair ->
+    val playerPointing = pair.first
+    val playerPointingBulletCard = bulletCards[idx]
+    val playerBeingPointedAt = pair.second
+    val playerBeingPointedAtPosition = playerPositions[idx]
+
+    if (playerBeingPointedAtPosition == PlayerPosition.LAYING_DOWN) {
+
+    } else {
+
+      if (playerPointingBulletCard == BulletCard.BANG) {
+        println("${playerPointing.name} shoots ${playerBeingPointedAt.name} and they lose 1 health")
+        playerBeingPointedAt.health--
+        playerPositions[idx] = PlayerPosition.LAYING_DOWN
+      } else {
+        println("${playerPointing.name} fires a click at ${playerBeingPointedAt.name}")
+      }
+
+    }
+  }
+
+  players.forEach { player ->
+    if (player.health <= 0) {
+      println("${player.name} is dead")
+      val indexToRemove = players.indexOf(player)
+      players.removeAt(indexToRemove)
+    }
   }
 }
 
@@ -111,7 +149,7 @@ enum class PlayerPosition {
   STANDING
 }
 
-fun courage(players: List<Player>): List<PlayerPosition> {
+fun courage(players: MutableList<Player>): List<PlayerPosition> {
   return players.map {
     println("${it.name}: Lay down or stay standing")
     when (getChoice(2)) { 

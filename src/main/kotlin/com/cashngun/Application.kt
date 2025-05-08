@@ -1,7 +1,5 @@
 package com.cashngun
 
-import com.cashngun.GameMode
-
 val mode = GameMode.AUTOMATIC
 
 fun getModeAndChoice(gameMode: GameMode) = { totalChoices: Int -> 
@@ -90,8 +88,8 @@ fun resolvePointing(
     } else {
 
       if (playerPointingBulletCard == BulletCard.BANG) {
-        println("${playerBeingPointedAt.name} loses 1 health, their health is now ${playerBeingPointedAt.health}")
-        playerBeingPointedAt.health--
+        println("${playerBeingPointedAt.name} gains 1 wound, they now have ${playerBeingPointedAt.wounds} wounds")
+        playerBeingPointedAt.wounds++
         playerPositions[idx] = PlayerPosition.LAYING_DOWN
       }
     }
@@ -99,12 +97,12 @@ fun resolvePointing(
   }
 
   players.forEach { player ->
-    if (player.health <= 0) {
+    if (player.wounds >= 3) {
       println("${player.name} is dead")
     }
   }
 
-  return players.filter { player -> player.health > 0 }.toMutableList()
+  return players.filter { player -> player.wounds <= 3 }.toMutableList()
 }
 
 fun playersPointGuns(players: List<Player>): MutableList<Pair<Player, Player>> {

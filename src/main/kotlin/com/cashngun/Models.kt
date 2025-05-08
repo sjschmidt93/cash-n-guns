@@ -3,7 +3,7 @@ package com.cashngun
 data class Player(
   val name: String,
 
-  var health: Int = 3,
+  var wounds: Int = 0,
 
   var numClickCards: Int = 5,
   var numBangCards: Int = 3,

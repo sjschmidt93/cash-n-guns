@@ -1,6 +1,21 @@
 package com.cashngun
 
+import com.cashngun.GameMode
+
+val mode = GameMode.AUTOMATIC
+
+fun getModeAndChoice(gameMode: GameMode) = { totalChoices: Int -> 
+  if (gameMode == GameMode.AUTOMATIC) {
+    (1..totalChoices).random()
+  } else {
+    readLine()?.trim()?.toIntOrNull() ?: 1
+  }
+}
+
+val getChoice = getModeAndChoice(mode)
+
 fun main() {
+  val mode = GameMode.AUTOMATIC
   val lootDeck = INITIAL_DECK
   val numberOfPlayers = 3
   var roundNumber = 1
@@ -22,6 +37,13 @@ fun main() {
     roundNumber++
   }
 }
+
+// fun holdup(players: List<Player>): Pair<Player, Player> {
+//   players.map {
+//     println("${it.name} choose your target")
+//     println("")
+//   }
+// }
 
 fun playersChooseBulletCards(players: List<Player>): List<BulletCard> {
   println("Choose your action:")
@@ -50,8 +72,8 @@ fun playersChooseBulletCards(players: List<Player>): List<BulletCard> {
       }
       
       else -> {
-        when (readLine()?.trim()) {
-          "1" -> {
+        when (getChoice(2)) {
+          1 -> {
             it.numBangCards--
             println(it.numBangCards)
             BulletCard.BANG
@@ -98,3 +120,4 @@ fun changeGodFather(players: List<Player>) {
   players[godFather].isGodFather = false
   players[newGodFatherIndex].isGodFather = true
 }
+

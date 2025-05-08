@@ -14,3 +14,7 @@ data class Player(
 enum class BulletCard {
   CLICK, BANG, INVALID
 }
+
+enum class GameMode {
+  AUTOMATIC, REAL
+}

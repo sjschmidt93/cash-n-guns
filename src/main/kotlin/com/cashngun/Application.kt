@@ -17,13 +17,13 @@ val getChoice = getModeAndChoice(mode)
 fun main() {
   val mode = GameMode.AUTOMATIC
   val lootDeck = INITIAL_DECK
-  val numberOfPlayers = 3
   var roundNumber = 1
 
   val players = listOf(
     Player(name = "Frank", isGodFather = true),
     Player(name = "Dan"),
-    Player(name = "Steven")
+    Player(name = "Steven"),
+    Player(name = "Erik")
   )
 
   while(!lootDeck.isEmpty()) {
@@ -35,6 +35,12 @@ fun main() {
 
     val playersPointingGuns = playersPointGuns(players)
 
+    val playerToRedirect = godFatherPrivilege(players)
+
+    playerToRedirect.let {
+      redirectPlayer(playerToRedirect, playersPointingGuns)
+    }
+
     val playerPositions = courage(players)
 
     // End of round
@@ -43,7 +49,7 @@ fun main() {
   }
 }
 
-fun playersPointGuns(players: List<Player>): List<Pair<Player, Player>> {
+fun playersPointGuns(players: List<Player>): MutableList<Pair<Player, Player>> {
   val playerPairs = players.map { player ->
     println("\n${player.name}: Choose a player to point your gun at:")
 
@@ -63,7 +69,41 @@ fun playersPointGuns(players: List<Player>): List<Pair<Player, Player>> {
 
   println("")
 
-  return playerPairs
+  return playerPairs.toMutableList()
+}
+
+fun godFatherPrivilege(players: List<Player>): Player? {
+  val godfather = players.first{it.isGodFather}
+  val otherPlayers = players.filterNot { it.isGodFather }
+  println("\n${godfather.name}: Order another player to change target:")
+  otherPlayers.forEachIndexed { index, it ->
+    println("L80: ${index + 1}) ${it.name}")
+  }
+  println("${otherPlayers.size + 1}) Nobody")
+  val choice = getChoice(otherPlayers.size + 1)
+  return if (choice < otherPlayers.size) {
+    println("Godfather chose ${otherPlayers[choice].name}")
+     otherPlayers[choice]
+  } else {
+    println("Godfather chose nobody")
+    null
+  }
+}
+
+fun redirectPlayer(player: Player?, playerPairs: MutableList<Pair<Player, Player>>) {
+  player?.let {
+    val currentTarget = playerPairs.first {it.first == player}.second
+    val newTargetChoices = playerPairs.map { it.first }.filterNot {it == currentTarget || it == player}
+
+    newTargetChoices.forEachIndexed { i, p -> println("${i + 1}) ${p.name}") }
+
+    val choice = getChoice(newTargetChoices.size) - 1
+
+    val indexToRemove = playerPairs.indexOfFirst { it.first == player }
+    playerPairs.removeAt(indexToRemove)
+    playerPairs.add(Pair(player, newTargetChoices[choice]))
+    println("GODFATHER PRIVIELEGEIEGE${player.name} redirects and points their gun at ${newTargetChoices[choice].name}")
+  }
 }
 
 enum class PlayerPosition {

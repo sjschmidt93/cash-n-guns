@@ -13,6 +13,10 @@ data class Player(
   val lootCards: MutableList<LootCard> = mutableListOf(),
 )
 
+fun Player.isAlive(): Boolean {
+  return this.wounds <= 3
+}
+
 enum class BulletCard {
   CLICK, BANG, INVALID
 }

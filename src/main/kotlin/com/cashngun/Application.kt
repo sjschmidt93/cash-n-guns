@@ -88,8 +88,8 @@ fun resolvePointing(
     } else {
 
       if (playerPointingBulletCard == BulletCard.BANG) {
-        println("${playerBeingPointedAt.name} gains 1 wound, they now have ${playerBeingPointedAt.wounds} wounds")
         playerBeingPointedAt.wounds++
+        println("${playerBeingPointedAt.name} gains 1 wound, they now have ${playerBeingPointedAt.wounds} wounds")
         playerPositions[idx] = PlayerPosition.LAYING_DOWN
       }
     }
@@ -97,12 +97,12 @@ fun resolvePointing(
   }
 
   players.forEach { player ->
-    if (player.wounds >= 3) {
+    if (player.isAlive().not()) {
       println("${player.name} is dead")
     }
   }
 
-  return players.filter { player -> player.wounds <= 3 }.toMutableList()
+  return players.filter { player -> player.isAlive() }.toMutableList()
 }
 
 fun playersPointGuns(players: List<Player>): MutableList<Pair<Player, Player>> {

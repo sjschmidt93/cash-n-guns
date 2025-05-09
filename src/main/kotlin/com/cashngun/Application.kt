@@ -1,5 +1,7 @@
 package com.cashngun
 
+import kotlin.system.exitProcess
+
 val mode = GameMode.AUTOMATIC
 
 fun getModeAndChoice(gameMode: GameMode) = { totalChoices: Int -> 
@@ -18,7 +20,7 @@ fun main() {
   var roundNumber = 1
 
   var players = mutableListOf(
-    Player(name = "Frank", isGodFather = false),
+    Player(name = "Frank"),
     Player(name = "Dan", isGodFather = true),
     Player(name = "Steven"),
     Player(name = "Erik")
@@ -46,6 +48,8 @@ fun main() {
 
     players = resolvePointing(bulletCards, playersPointingGuns, players)
 
+    checkMoreThanOnePlayerRemaining(players)
+
     collectLoot(players, lootForThisRound, bulletCardDiscardPile)
 
     // End of round
@@ -59,6 +63,13 @@ fun main() {
   val winner = determineWinner(players)
   println()
   winner?.let { println("The winner is: ${it.name}!") } ?: println("Nobody wins!")
+}
+
+fun checkMoreThanOnePlayerRemaining(players: List<Player>) {
+  if (players.size == 1) {
+    println("${players.first().name} wins, all other players are dead!")
+    exitProcess(0)
+  }
 }
 
 fun createAndSortPlayersEligibleForLoot(players: List<Player>): List<Player> {

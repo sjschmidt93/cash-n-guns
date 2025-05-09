@@ -28,7 +28,7 @@ fun main() {
 
   val bulletCardDiscardPile = mutableListOf<BulletCard>()
 
-  while(!lootDeck.isEmpty()) {
+  while(lootDeck.isNotEmpty()) {
     printRoundAndGodFather(roundNumber, players)
 
     val lootForThisRound = getLootForThisRound(lootDeck)
@@ -54,6 +54,7 @@ fun main() {
 
     // End of round
     bulletCardDiscardPile.addAll(bulletCards)
+    resetAlivePlayersToStanding(players)
     roundNumber++
   }
 
@@ -63,6 +64,12 @@ fun main() {
   val winner = determineWinner(players)
   println()
   winner?.let { println("The winner is: ${it.name}!") } ?: println("Nobody wins!")
+}
+
+fun resetAlivePlayersToStanding(players: List<Player>) {
+  players.forEach {
+    it.playerPosition = PlayerPosition.STANDING
+  }
 }
 
 fun checkPlayersRemaining(players: List<Player>) {
@@ -93,7 +100,17 @@ fun createAndSortPlayersEligibleForLoot(players: List<Player>): List<Player> {
 }
 
 fun collectLoot(players: MutableList<Player>, lootForThisRound: MutableList<LootCard>, bulletCardDiscardPile: MutableList<BulletCard>) {
-  createAndSortPlayersEligibleForLoot(players).forEach { player ->
+  println("Step 7: Loot Collection")
+  var idx = 0
+  val playersSorted = createAndSortPlayersEligibleForLoot(players)
+
+  if (playersSorted.isEmpty()) {
+    println("No players are eligible for loot")
+    return
+  }
+
+  while (lootForThisRound.isNotEmpty()) {
+    val player =  playersSorted[idx % playersSorted.size]
     println("${player.name}: choose your loot")
 
     val choice = getChoice(lootForThisRound.size)
@@ -127,6 +144,8 @@ fun collectLoot(players: MutableList<Player>, lootForThisRound: MutableList<Loot
         }
       }
     }
+
+    idx++
   }
 }
 

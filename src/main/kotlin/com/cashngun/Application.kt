@@ -4,11 +4,11 @@ import kotlin.system.exitProcess
 
 val mode = GameMode.AUTOMATIC
 
-fun getModeAndChoice(gameMode: GameMode) = { totalChoices: Int -> 
+fun getModeAndChoice(gameMode: GameMode) = { totalChoices: Int ->
   if (gameMode == GameMode.AUTOMATIC) {
     (1..totalChoices).random()
   } else {
-    readLine()?.trim()?.toIntOrNull() ?: 1
+    readlnOrNull()?.trim()?.toIntOrNull() ?: 1
   }
 }
 
@@ -192,13 +192,13 @@ fun playersPointGuns(players: List<Player>): MutableList<Pair<Player, Player>> {
     println("\n${player.name}: Choose a player to point your gun at:")
 
     val otherPlayers = players.filterNot { p -> p.name == player.name }
-    
+
     otherPlayers.forEachIndexed { index, it ->
       println("${index + 1}) ${it.name}")
     }
 
     val playerToPointAtPrompt = getChoice(otherPlayers.size)
-    
+
     val playerToPointAt = playerToPointAtPrompt - 1
     println("${player.name} points their gun at ${otherPlayers[playerToPointAt].name}")
 
@@ -255,7 +255,7 @@ fun courage(players: MutableList<Player>) {
   println("Step 5: Courage")
   players.forEach {
     println("${it.name}: Lay down or stay standing")
-    when (getChoice(2)) { 
+    when (getChoice(2)) {
       1 -> {
         println("${it.name} lays down")
         it.playerPosition = PlayerPosition.LAYING_DOWN
@@ -273,7 +273,7 @@ fun playersChooseBulletCards(players: List<Player>): List<BulletCard> {
   println("Choose your action:")
   println("1) Bullet")
   println("2) Click\n")
-  
+
   return players.map {
     println("${it.name} choose your card")
 
@@ -294,7 +294,7 @@ fun playersChooseBulletCards(players: List<Player>): List<BulletCard> {
         it.numClickCards--
         BulletCard.CLICK
       }
-      
+
       else -> {
         when (getChoice(2)) {
           1 -> {

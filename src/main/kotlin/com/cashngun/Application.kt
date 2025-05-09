@@ -48,7 +48,7 @@ fun main() {
 
     players = resolvePointing(bulletCards, playersPointingGuns, players)
 
-    checkMoreThanOnePlayerRemaining(players)
+    checkPlayersRemaining(players)
 
     collectLoot(players, lootForThisRound, bulletCardDiscardPile)
 
@@ -65,7 +65,11 @@ fun main() {
   winner?.let { println("The winner is: ${it.name}!") } ?: println("Nobody wins!")
 }
 
-fun checkMoreThanOnePlayerRemaining(players: List<Player>) {
+fun checkPlayersRemaining(players: List<Player>) {
+  if (players.isEmpty()) {
+    println("Everyone is dead! Game over")
+    exitProcess(0)
+  }
   if (players.size == 1) {
     println("${players.first().name} wins, all other players are dead!")
     exitProcess(0)

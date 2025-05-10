@@ -23,5 +23,5 @@ enum class BulletCard {
 }
 
 enum class GameMode {
-  AUTOMATIC, REAL, TEST
+  AUTOMATIC, REAL
 }

@@ -23,10 +23,9 @@ fun main() {
   gameLoop()
 }
 
-fun captureGameOutput(
-  seedForLootDeck: Random? = null,
-  testInputs: ListIterator<Int>,
-  writeToFile: Boolean = false
+fun gameLoopTest(
+  seedForLootDeck: Random?,
+  testInputs: ListIterator<Int>
 ): String {
   val outputStream = ByteArrayOutputStream()
   val originalOut = System.out

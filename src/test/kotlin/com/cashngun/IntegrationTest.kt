@@ -11,7 +11,7 @@ class IntegrationTest {
     val testInputs = List(1000) { listOf(1,2) }.flatten().listIterator()
     val seed = Random(1)
 
-    val output = captureGameOutput(seed, testInputs)
+    val output = gameLoopTest(seed, testInputs)
     File("src/test/resources/actual_output.txt").writeText(output)
     val expectedOutput = File("src/test/resources/expected_output.txt").readText()
 

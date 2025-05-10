@@ -1,22 +1,30 @@
 package com.cashngun
 
+import kotlin.random.Random
 import kotlin.system.exitProcess
 
-val mode = GameMode.AUTOMATIC
+val EMPTY_ITERATOR = emptyList<Int>().listIterator()
 
-fun getModeAndChoice(gameMode: GameMode) = { totalChoices: Int ->
+fun getChoice(gameMode: GameMode = GameMode.AUTOMATIC, testInputs: ListIterator<Int>) = { totalChoices: Int ->
   if (gameMode == GameMode.AUTOMATIC) {
     (1..totalChoices).random()
-  } else {
+  } else if (gameMode == GameMode.REAL) {
     readlnOrNull()?.trim()?.toIntOrNull() ?: 1
+  } else if (gameMode == GameMode.TEST) {
+    testInputs.next()
   }
 }
 
-val getChoice = getModeAndChoice(mode)
-
 fun main() {
-  val mode = GameMode.AUTOMATIC
-  val lootDeck = INITIAL_DECK
+  gameLoop()
+}
+
+fun gameLoop(
+  seedForLootDeck: Random? = null,
+  testInputs: ListIterator<Int> = EMPTY_ITERATOR
+) {
+  val lootDeck = getInitialDeck(seedForLootDeck).toMutableList()
+
   var roundNumber = 1
 
   var players = mutableListOf(

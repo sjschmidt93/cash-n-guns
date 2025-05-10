@@ -33,7 +33,7 @@ fun getInitialDeck(seed: Random?): List<LootCard> {
     *Array(2) { LootCard(LootCardType.FIRST_AID_KIT) }
   )
 
-  return seed?.let { deck.shuffled(seed) } ?: deck.shuffled()
+  return deck.shuffled(seed ?: Random.Default)
 }
 
 private val LOOT_CARDS_PER_ROUND = 8

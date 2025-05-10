@@ -4,17 +4,12 @@ import kotlin.random.Random
 import kotlin.system.exitProcess
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
-import java.io.File
 
 val EMPTY_ITERATOR = emptyList<Int>().listIterator()
 
-fun getChoice(totalChoices: Int, testInputs: ListIterator<Int>, gameMode: GameMode = GameMode.AUTOMATIC): Int {
-  if (testInputs.hasNext()) {
-    return Math.min(testInputs.next(), totalChoices)
-  }
-
+fun getChoice(totalChoices: Int, seed: Random?, gameMode: GameMode = GameMode.AUTOMATIC): Int {
   return when (gameMode) {
-    GameMode.AUTOMATIC -> (1..totalChoices).random()
+    GameMode.AUTOMATIC -> (1..totalChoices).random(seed ?: Random.Default)
     GameMode.REAL -> readlnOrNull()?.trim()?.toIntOrNull() ?: 1
   }
 }
@@ -24,15 +19,14 @@ fun main() {
 }
 
 fun gameLoopTest(
-  seedForLootDeck: Random,
-  testInputs: ListIterator<Int>
+  seed: Random?
 ): String {
   val outputStream = ByteArrayOutputStream()
   val originalOut = System.out
   System.setOut(PrintStream(outputStream))
   
   try {
-    gameLoop(seedForLootDeck, testInputs)
+    gameLoop(seed)
     val output = outputStream.toString()
     return output
   } finally {
@@ -41,10 +35,9 @@ fun gameLoopTest(
 }
 
 fun gameLoop(
-  seedForLootDeck: Random? = null,
-  testInputs: ListIterator<Int> = EMPTY_ITERATOR
+  seed: Random? = null
 ) {
-  val lootDeck = getInitialDeck(seedForLootDeck).toMutableList()
+  val lootDeck = getInitialDeck(seed).toMutableList()
 
   var roundNumber = 1
 
@@ -62,24 +55,24 @@ fun gameLoop(
 
     val lootForThisRound = getLootForThisRound(lootDeck)
 
-    val bulletCards = playersChooseBulletCards(players, testInputs)
+    val bulletCards = playersChooseBulletCards(players, seed)
     println("")
 
-    val playersPointingGuns = playersPointGuns(players, testInputs)
+    val playersPointingGuns = playersPointGuns(players, seed)
 
-    val playerToRedirect = godFatherPrivilege(players, testInputs)
+    val playerToRedirect = godFatherPrivilege(players, seed)
     println("")
 
-    redirectPlayer(playerToRedirect, playersPointingGuns, testInputs)
+    redirectPlayer(playerToRedirect, playersPointingGuns, seed)
 
-    courage(players, testInputs)
+    courage(players, seed)
     println("")
 
     players = resolvePointing(bulletCards, playersPointingGuns, players)
 
     checkPlayersRemaining(players)
 
-    collectLoot(players, lootForThisRound, bulletCardDiscardPile, testInputs)
+    collectLoot(players, lootForThisRound, bulletCardDiscardPile, seed)
 
     // End of round
     bulletCardDiscardPile.addAll(bulletCards)
@@ -132,7 +125,7 @@ fun collectLoot(
   players: MutableList<Player>,
   lootForThisRound: MutableList<LootCard>,
   bulletCardDiscardPile: MutableList<BulletCard>,
-  testInputs: ListIterator<Int> = EMPTY_ITERATOR
+  seed: Random?
 ) {
   println("Step 7: Loot Collection")
   var idx = 0
@@ -147,7 +140,7 @@ fun collectLoot(
     val player =  playersSorted[idx % playersSorted.size]
     println("${player.name}: choose your loot")
 
-    val choice = getChoice(lootForThisRound.size, testInputs)
+    val choice = getChoice(lootForThisRound.size, seed)
     val lootToCollect = lootForThisRound[choice - 1]
     player.lootCards.add(lootToCollect)
     lootForThisRound.remove(lootToCollect)
@@ -220,7 +213,7 @@ fun resolvePointing(
   return players.filter { player -> player.isAlive() }.toMutableList()
 }
 
-fun playersPointGuns(players: List<Player>, testInputs: ListIterator<Int>): MutableList<Pair<Player, Player>> {
+fun playersPointGuns(players: List<Player>, seed: Random?): MutableList<Pair<Player, Player>> {
   println("Step 3: Hold-Up")
   val playerPairs = players.map { player ->
     println("\n${player.name}: Choose a player to point your gun at:")
@@ -231,7 +224,7 @@ fun playersPointGuns(players: List<Player>, testInputs: ListIterator<Int>): Muta
       println("${index + 1}) ${it.name}")
     }
 
-    val playerToPointAtPrompt = getChoice(otherPlayers.size, testInputs)
+    val playerToPointAtPrompt = getChoice(otherPlayers.size, seed)
 
     val playerToPointAt = playerToPointAtPrompt - 1
     println("${player.name} points their gun at ${otherPlayers[playerToPointAt].name}")
@@ -244,7 +237,7 @@ fun playersPointGuns(players: List<Player>, testInputs: ListIterator<Int>): Muta
   return playerPairs.toMutableList()
 }
 
-fun godFatherPrivilege(players: List<Player>, testInputs: ListIterator<Int>): Player? {
+fun godFatherPrivilege(players: List<Player>, seed: Random?): Player? {
   println("Step 4: Godfather's Privilege")
   val godfather = players.first{it.isGodFather}
   val otherPlayers = players.filterNot { it.isGodFather }
@@ -253,7 +246,7 @@ fun godFatherPrivilege(players: List<Player>, testInputs: ListIterator<Int>): Pl
     println("${index + 1}) ${it.name}")
   }
   println("${otherPlayers.size + 1}) Nobody")
-  val choice = getChoice(otherPlayers.size + 1, testInputs)
+  val choice = getChoice(otherPlayers.size + 1, seed)
   return if (choice < otherPlayers.size) {
     println("Godfather chose ${otherPlayers[choice].name}")
      otherPlayers[choice]
@@ -263,14 +256,14 @@ fun godFatherPrivilege(players: List<Player>, testInputs: ListIterator<Int>): Pl
   }
 }
 
-fun redirectPlayer(player: Player?, playerPairs: MutableList<Pair<Player, Player>>, testInputs: ListIterator<Int>) {
+fun redirectPlayer(player: Player?, playerPairs: MutableList<Pair<Player, Player>>, seed: Random?) {
   player?.let {
     val currentTarget = playerPairs.first {it.first == player}.second
     val newTargetChoices = playerPairs.map { it.first }.filterNot {it == currentTarget || it == player}
 
     newTargetChoices.forEachIndexed { i, p -> println("${i + 1}) ${p.name}") }
 
-    val choice = getChoice(newTargetChoices.size, testInputs) - 1
+    val choice = getChoice(newTargetChoices.size, seed) - 1
 
     val indexToRemove = playerPairs.indexOfFirst { it.first == player }
     playerPairs.removeAt(indexToRemove)
@@ -285,11 +278,11 @@ enum class PlayerPosition {
   STANDING
 }
 
-fun courage(players: MutableList<Player>, testInputs: ListIterator<Int>) {
+fun courage(players: MutableList<Player>, seed: Random?) {
   println("Step 5: Courage")
   players.forEach {
     println("${it.name}: Lay down or stay standing")
-    when (getChoice(2, testInputs)) {
+    when (getChoice(2, seed)) {
       1 -> {
         println("${it.name} lays down")
         it.playerPosition = PlayerPosition.LAYING_DOWN
@@ -302,7 +295,7 @@ fun courage(players: MutableList<Player>, testInputs: ListIterator<Int>) {
   }
 }
 
-fun playersChooseBulletCards(players: List<Player>, testInputs: ListIterator<Int>): List<BulletCard> {
+fun playersChooseBulletCards(players: List<Player>, seed: Random?): List<BulletCard> {
   println("Step 2: Choice of the Bullet card")
   println("Choose your action:")
   println("1) Bullet")
@@ -330,7 +323,7 @@ fun playersChooseBulletCards(players: List<Player>, testInputs: ListIterator<Int
       }
 
       else -> {
-        when (getChoice(2, testInputs)) {
+        when (getChoice(2, seed)) {
           1 -> {
             it.numBangCards--
             println(it.numBangCards)

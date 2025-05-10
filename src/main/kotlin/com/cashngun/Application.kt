@@ -4,12 +4,13 @@ import kotlin.random.Random
 import kotlin.system.exitProcess
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
+import java.io.File
 
 val EMPTY_ITERATOR = emptyList<Int>().listIterator()
 
 fun getChoice(totalChoices: Int, testInputs: ListIterator<Int>, gameMode: GameMode = GameMode.AUTOMATIC): Int {
   if (testInputs.hasNext()) {
-    Math.max(testInputs.next(), totalChoices)
+    return Math.min(testInputs.next(), totalChoices)
   }
 
   return when (gameMode) {
@@ -24,7 +25,8 @@ fun main() {
 
 fun captureGameOutput(
   seedForLootDeck: Random? = null,
-  testInputs: ListIterator<Int>
+  testInputs: ListIterator<Int>,
+  writeToFile: Boolean = false
 ): String {
   val outputStream = ByteArrayOutputStream()
   val originalOut = System.out
@@ -32,7 +34,8 @@ fun captureGameOutput(
   
   try {
     gameLoop(seedForLootDeck, testInputs)
-    return outputStream.toString()
+    val output = outputStream.toString()
+    return output
   } finally {
     System.setOut(originalOut)
   }

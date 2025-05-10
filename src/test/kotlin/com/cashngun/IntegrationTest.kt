@@ -9,7 +9,7 @@ class IntegrationTest {
   @Test
   fun `seeded game output should match expected output`() {
     val testInputs = List(1000) { listOf(1,2) }.flatten().listIterator()
-    val seed = Random(1)
+    val seed = Random(42)
 
     val output = gameLoopTest(seed, testInputs)
     File("src/test/resources/actual_output.txt").writeText(output)

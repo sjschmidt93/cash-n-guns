@@ -24,7 +24,7 @@ fun main() {
 }
 
 fun gameLoopTest(
-  seedForLootDeck: Random?,
+  seedForLootDeck: Random,
   testInputs: ListIterator<Int>
 ): String {
   val outputStream = ByteArrayOutputStream()

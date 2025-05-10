@@ -1,5 +1,7 @@
 package com.cashngun
 
+import kotlin.random.Random
+
 enum class LootCardType {
   CASH,
   PAINTING,
@@ -14,21 +16,25 @@ data class LootCard(
   val value: Int? = null
 )
 
-val INITIAL_DECK = listOf(
-  *Array(15) { LootCard(LootCardType.CASH, 5000) },
-  *Array(15) { LootCard(LootCardType.CASH, 10000) },
-  *Array(10) { LootCard(LootCardType.CASH, 20000) },
+fun getInitialDeck(seed: Random?): List<LootCard> {
+  val deck = listOf(
+    *Array(15) { LootCard(LootCardType.CASH, 5000) },
+    *Array(15) { LootCard(LootCardType.CASH, 10000) },
+    *Array(10) { LootCard(LootCardType.CASH, 20000) },
 
-  *Array(5) { LootCard(LootCardType.DIAMOND, 1000) },
-  *Array(3) { LootCard(LootCardType.DIAMOND, 5000) },
-  LootCard(LootCardType.DIAMOND, 10000),
+    *Array(5) { LootCard(LootCardType.DIAMOND, 1000) },
+    *Array(3) { LootCard(LootCardType.DIAMOND, 5000) },
+    LootCard(LootCardType.DIAMOND, 10000),
 
-  *Array(10) { LootCard(LootCardType.PAINTING) },
+    *Array(10) { LootCard(LootCardType.PAINTING) },
 
-  *Array(3) { LootCard(LootCardType.CLIP) },
+    *Array(3) { LootCard(LootCardType.CLIP) },
 
-  *Array(2) { LootCard(LootCardType.FIRST_AID_KIT) }
-).shuffled().toMutableList()
+    *Array(2) { LootCard(LootCardType.FIRST_AID_KIT) }
+  )
+
+  return seed?.let { deck.shuffled(seed) } ?: deck.shuffled()
+}
 
 private val LOOT_CARDS_PER_ROUND = 8
 

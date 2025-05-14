@@ -1,0 +1,881 @@
+Round 1
+Godfather: Dan
+
+Step 1: Loot
+Loot for this round:
+• first aid kit
+• clip
+• diamond worth 5000
+• painting
+• painting
+• cash worth 20000
+• diamond worth 5000
+• cash worth 5000
+• godfather card
+
+Step 2: Choice of the Bullet card
+Choose your action:
+1) Bullet
+2) Click
+
+Frank choose your card
+Frank chose CLICK
+
+Dan choose your card
+2
+Dan chose BANG
+
+Steven choose your card
+2
+Steven chose BANG
+
+Erik choose your card
+Erik chose CLICK
+
+
+Step 3: Hold-Up
+
+Frank: Choose a player to point your gun at:
+1) Dan
+2) Steven
+3) Erik
+Frank points their gun at Dan
+
+Dan: Choose a player to point your gun at:
+1) Frank
+2) Steven
+3) Erik
+Dan points their gun at Erik
+
+Steven: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Erik
+Steven points their gun at Erik
+
+Erik: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Steven
+Erik points their gun at Steven
+
+Step 4: Godfather's Privilege
+
+Dan: Order another player to change target:
+1) Frank
+2) Steven
+3) Erik
+4) Nobody
+Godfather chose nobody
+
+Step 5: Courage
+Frank: Lay down or stay standing
+Frank stays standing
+Dan: Lay down or stay standing
+Dan stays standing
+Steven: Lay down or stay standing
+Steven lays down
+Erik: Lay down or stay standing
+Erik lays down
+
+Step 6: Card effects
+Frank fires a CLICK at Dan who is STANDING
+
+Dan fires a BANG at Erik who is LAYING_DOWN
+
+Steven fires a BANG at Erik who is LAYING_DOWN
+
+Erik fires a CLICK at Steven who is LAYING_DOWN
+
+Step 7: Loot Collection
+Dan: choose your loot
+Dan collects painting
+Frank: choose your loot
+Frank collects diamond worth 5000
+Dan: choose your loot
+Dan collects clip
+Frank: choose your loot
+Frank collects cash worth 20000
+Dan: choose your loot
+Dan collects painting
+Frank: choose your loot
+Frank collects cash worth 5000
+Dan: choose your loot
+Dan collects first aid kit
+Frank: choose your loot
+Frank collects godfather card
+Dan: choose your loot
+Dan collects diamond worth 5000
+Round 2
+Godfather: Frank
+
+Step 1: Loot
+Loot for this round:
+• cash worth 5000
+• cash worth 20000
+• cash worth 10000
+• painting
+• cash worth 10000
+• clip
+• cash worth 5000
+• cash worth 5000
+• godfather card
+
+Step 2: Choice of the Bullet card
+Choose your action:
+1) Bullet
+2) Click
+
+Frank choose your card
+Frank chose CLICK
+
+Dan choose your card
+Dan chose CLICK
+
+Steven choose your card
+Steven chose CLICK
+
+Erik choose your card
+Erik chose CLICK
+
+
+Step 3: Hold-Up
+
+Frank: Choose a player to point your gun at:
+1) Dan
+2) Steven
+3) Erik
+Frank points their gun at Dan
+
+Dan: Choose a player to point your gun at:
+1) Frank
+2) Steven
+3) Erik
+Dan points their gun at Steven
+
+Steven: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Erik
+Steven points their gun at Frank
+
+Erik: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Steven
+Erik points their gun at Frank
+
+Step 4: Godfather's Privilege
+
+Frank: Order another player to change target:
+1) Dan
+2) Steven
+3) Erik
+4) Nobody
+Godfather chose Steven
+
+1) Dan
+2) Erik
+Steven redirects and points their gun at Dan
+
+Step 5: Courage
+Frank: Lay down or stay standing
+Frank stays standing
+Dan: Lay down or stay standing
+Dan stays standing
+Steven: Lay down or stay standing
+Steven lays down
+Erik: Lay down or stay standing
+Erik stays standing
+
+Step 6: Card effects
+Frank fires a CLICK at Dan who is STANDING
+
+Dan fires a CLICK at Steven who is LAYING_DOWN
+
+Erik fires a CLICK at Frank who is STANDING
+
+Steven fires a CLICK at Dan who is STANDING
+
+Step 7: Loot Collection
+Frank: choose your loot
+Frank collects cash worth 10000
+Dan: choose your loot
+Dan collects cash worth 5000
+Erik: choose your loot
+Erik collects cash worth 5000
+Frank: choose your loot
+Frank collects godfather card
+Dan: choose your loot
+Dan collects painting
+Erik: choose your loot
+Erik collects cash worth 20000
+Frank: choose your loot
+Frank collects cash worth 10000
+Dan: choose your loot
+Dan collects cash worth 5000
+Erik: choose your loot
+Erik collects clip
+Erik gains bang card
+Round 3
+Godfather: Frank
+
+Step 1: Loot
+Loot for this round:
+• cash worth 10000
+• cash worth 5000
+• diamond worth 10000
+• diamond worth 1000
+• cash worth 20000
+• clip
+• painting
+• cash worth 5000
+• godfather card
+
+Step 2: Choice of the Bullet card
+Choose your action:
+1) Bullet
+2) Click
+
+Frank choose your card
+2
+Frank chose BANG
+
+Dan choose your card
+Dan chose CLICK
+
+Steven choose your card
+1
+Steven chose BANG
+
+Erik choose your card
+Erik chose CLICK
+
+
+Step 3: Hold-Up
+
+Frank: Choose a player to point your gun at:
+1) Dan
+2) Steven
+3) Erik
+Frank points their gun at Erik
+
+Dan: Choose a player to point your gun at:
+1) Frank
+2) Steven
+3) Erik
+Dan points their gun at Frank
+
+Steven: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Erik
+Steven points their gun at Frank
+
+Erik: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Steven
+Erik points their gun at Frank
+
+Step 4: Godfather's Privilege
+
+Frank: Order another player to change target:
+1) Dan
+2) Steven
+3) Erik
+4) Nobody
+Godfather chose Steven
+
+1) Dan
+2) Erik
+Steven redirects and points their gun at Dan
+
+Step 5: Courage
+Frank: Lay down or stay standing
+Frank lays down
+Dan: Lay down or stay standing
+Dan stays standing
+Steven: Lay down or stay standing
+Steven stays standing
+Erik: Lay down or stay standing
+Erik stays standing
+
+Step 6: Card effects
+Frank fires a BANG at Erik who is STANDING
+Erik gains 1 wound, they now have 1 wounds
+
+Dan fires a CLICK at Frank who is LAYING_DOWN
+
+Erik fires a BANG at Frank who is LAYING_DOWN
+
+Steven fires a CLICK at Dan who is STANDING
+
+Step 7: Loot Collection
+Dan: choose your loot
+Dan collects cash worth 5000
+Steven: choose your loot
+Steven collects cash worth 5000
+Dan: choose your loot
+Dan collects diamond worth 1000
+Steven: choose your loot
+Steven collects diamond worth 10000
+Dan: choose your loot
+Dan collects clip
+Dan gains bang card
+Steven: choose your loot
+Steven collects cash worth 20000
+Dan: choose your loot
+Dan collects painting
+Steven: choose your loot
+Steven collects cash worth 10000
+Dan: choose your loot
+Dan collects godfather card
+Round 4
+Godfather: Dan
+
+Step 1: Loot
+Loot for this round:
+• painting
+• painting
+• cash worth 20000
+• cash worth 10000
+• cash worth 10000
+• cash worth 10000
+• cash worth 10000
+• cash worth 10000
+• godfather card
+
+Step 2: Choice of the Bullet card
+Choose your action:
+1) Bullet
+2) Click
+
+Frank choose your card
+1
+Frank chose BANG
+
+Dan choose your card
+2
+Dan chose BANG
+
+Steven choose your card
+0
+Steven chose BANG
+
+Erik choose your card
+3
+Erik chose BANG
+
+
+Step 3: Hold-Up
+
+Frank: Choose a player to point your gun at:
+1) Dan
+2) Steven
+3) Erik
+Frank points their gun at Erik
+
+Dan: Choose a player to point your gun at:
+1) Frank
+2) Steven
+3) Erik
+Dan points their gun at Frank
+
+Steven: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Erik
+Steven points their gun at Dan
+
+Erik: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Steven
+Erik points their gun at Steven
+
+Step 4: Godfather's Privilege
+
+Dan: Order another player to change target:
+1) Frank
+2) Steven
+3) Erik
+4) Nobody
+Godfather chose Steven
+
+1) Frank
+2) Erik
+Steven redirects and points their gun at Frank
+
+Step 5: Courage
+Frank: Lay down or stay standing
+Frank lays down
+Dan: Lay down or stay standing
+Dan stays standing
+Steven: Lay down or stay standing
+Steven stays standing
+Erik: Lay down or stay standing
+Erik lays down
+
+Step 6: Card effects
+Frank fires a BANG at Erik who is LAYING_DOWN
+
+Dan fires a BANG at Frank who is LAYING_DOWN
+
+Erik fires a BANG at Steven who is STANDING
+Steven gains 1 wound, they now have 1 wounds
+
+Steven fires a BANG at Frank who is LAYING_DOWN
+
+Step 7: Loot Collection
+Dan: choose your loot
+Dan collects cash worth 10000
+Dan: choose your loot
+Dan collects cash worth 10000
+Dan: choose your loot
+Dan collects painting
+Dan: choose your loot
+Dan collects cash worth 10000
+Dan: choose your loot
+Dan collects cash worth 20000
+Dan: choose your loot
+Dan collects cash worth 10000
+Dan: choose your loot
+Dan collects painting
+Dan: choose your loot
+Dan collects godfather card
+Dan: choose your loot
+Dan collects cash worth 10000
+Round 5
+Godfather: Dan
+
+Step 1: Loot
+Loot for this round:
+• cash worth 10000
+• diamond worth 5000
+• cash worth 5000
+• cash worth 20000
+• cash worth 10000
+• cash worth 10000
+• cash worth 10000
+• cash worth 5000
+• godfather card
+
+Step 2: Choice of the Bullet card
+Choose your action:
+1) Bullet
+2) Click
+
+Frank choose your card
+Frank chose CLICK
+
+Dan choose your card
+1
+Dan chose BANG
+
+Steven choose your card
+You have no bang cards, you must choose a click card
+Steven chose CLICK
+
+Erik choose your card
+Erik chose CLICK
+
+
+Step 3: Hold-Up
+
+Frank: Choose a player to point your gun at:
+1) Dan
+2) Steven
+3) Erik
+Frank points their gun at Dan
+
+Dan: Choose a player to point your gun at:
+1) Frank
+2) Steven
+3) Erik
+Dan points their gun at Erik
+
+Steven: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Erik
+Steven points their gun at Frank
+
+Erik: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Steven
+Erik points their gun at Steven
+
+Step 4: Godfather's Privilege
+
+Dan: Order another player to change target:
+1) Frank
+2) Steven
+3) Erik
+4) Nobody
+Godfather chose Erik
+
+1) Frank
+2) Dan
+Erik redirects and points their gun at Dan
+
+Step 5: Courage
+Frank: Lay down or stay standing
+Frank stays standing
+Dan: Lay down or stay standing
+Dan stays standing
+Steven: Lay down or stay standing
+Steven stays standing
+Erik: Lay down or stay standing
+Erik lays down
+
+Step 6: Card effects
+Frank fires a CLICK at Dan who is STANDING
+
+Dan fires a BANG at Erik who is LAYING_DOWN
+
+Steven fires a CLICK at Frank who is STANDING
+
+Erik fires a CLICK at Dan who is STANDING
+
+Step 7: Loot Collection
+Dan: choose your loot
+Dan collects diamond worth 5000
+Steven: choose your loot
+Steven collects cash worth 10000
+Frank: choose your loot
+Frank collects cash worth 10000
+Dan: choose your loot
+Dan collects cash worth 10000
+Steven: choose your loot
+Steven collects cash worth 5000
+Frank: choose your loot
+Frank collects cash worth 5000
+Dan: choose your loot
+Dan collects godfather card
+Steven: choose your loot
+Steven collects cash worth 10000
+Frank: choose your loot
+Frank collects cash worth 20000
+Round 6
+Godfather: Dan
+
+Step 1: Loot
+Loot for this round:
+• painting
+• cash worth 20000
+• cash worth 20000
+• cash worth 5000
+• painting
+• cash worth 5000
+• cash worth 20000
+• cash worth 5000
+• godfather card
+
+Step 2: Choice of the Bullet card
+Choose your action:
+1) Bullet
+2) Click
+
+Frank choose your card
+0
+Frank chose BANG
+
+Dan choose your card
+Dan chose CLICK
+
+Steven choose your card
+You have no bang cards, you must choose a click card
+Steven chose CLICK
+
+Erik choose your card
+You have no click cards, you must choose a bang card
+Erik chose BANG
+
+
+Step 3: Hold-Up
+
+Frank: Choose a player to point your gun at:
+1) Dan
+2) Steven
+3) Erik
+Frank points their gun at Erik
+
+Dan: Choose a player to point your gun at:
+1) Frank
+2) Steven
+3) Erik
+Dan points their gun at Frank
+
+Steven: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Erik
+Steven points their gun at Dan
+
+Erik: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Steven
+Erik points their gun at Steven
+
+Step 4: Godfather's Privilege
+
+Dan: Order another player to change target:
+1) Frank
+2) Steven
+3) Erik
+4) Nobody
+Godfather chose nobody
+
+Step 5: Courage
+Frank: Lay down or stay standing
+Frank lays down
+Dan: Lay down or stay standing
+Dan lays down
+Steven: Lay down or stay standing
+Steven stays standing
+Erik: Lay down or stay standing
+Erik lays down
+
+Step 6: Card effects
+Frank fires a BANG at Erik who is LAYING_DOWN
+
+Dan fires a CLICK at Frank who is LAYING_DOWN
+
+Steven fires a CLICK at Dan who is LAYING_DOWN
+
+Erik fires a BANG at Steven who is STANDING
+Steven gains 1 wound, they now have 2 wounds
+
+Step 7: Loot Collection
+No players are eligible for loot
+Round 7
+Godfather: Dan
+
+Step 1: Loot
+Loot for this round:
+• first aid kit
+• cash worth 10000
+• painting
+• painting
+• diamond worth 1000
+• cash worth 20000
+• cash worth 5000
+• cash worth 5000
+• godfather card
+
+Step 2: Choice of the Bullet card
+Choose your action:
+1) Bullet
+2) Click
+
+Frank choose your card
+You have no bang cards, you must choose a click card
+Frank chose CLICK
+
+Dan choose your card
+Dan chose CLICK
+
+Steven choose your card
+You have no bang cards, you must choose a click card
+Steven chose CLICK
+
+Erik choose your card
+You have no click cards, you must choose a bang card
+Erik chose BANG
+
+
+Step 3: Hold-Up
+
+Frank: Choose a player to point your gun at:
+1) Dan
+2) Steven
+3) Erik
+Frank points their gun at Dan
+
+Dan: Choose a player to point your gun at:
+1) Frank
+2) Steven
+3) Erik
+Dan points their gun at Frank
+
+Steven: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Erik
+Steven points their gun at Frank
+
+Erik: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Steven
+Erik points their gun at Dan
+
+Step 4: Godfather's Privilege
+
+Dan: Order another player to change target:
+1) Frank
+2) Steven
+3) Erik
+4) Nobody
+Godfather chose Erik
+
+1) Frank
+2) Steven
+Erik redirects and points their gun at Frank
+
+Step 5: Courage
+Frank: Lay down or stay standing
+Frank lays down
+Dan: Lay down or stay standing
+Dan lays down
+Steven: Lay down or stay standing
+Steven stays standing
+Erik: Lay down or stay standing
+Erik lays down
+
+Step 6: Card effects
+Frank fires a CLICK at Dan who is LAYING_DOWN
+
+Dan fires a CLICK at Frank who is LAYING_DOWN
+
+Steven fires a CLICK at Frank who is LAYING_DOWN
+
+Erik fires a BANG at Frank who is LAYING_DOWN
+
+Step 7: Loot Collection
+Steven: choose your loot
+Steven collects godfather card
+Steven: choose your loot
+Steven collects cash worth 10000
+Steven: choose your loot
+Steven collects painting
+Steven: choose your loot
+Steven collects first aid kit
+Steven: choose your loot
+Steven collects painting
+Steven: choose your loot
+Steven collects cash worth 20000
+Steven: choose your loot
+Steven collects diamond worth 1000
+Steven: choose your loot
+Steven collects cash worth 5000
+Steven: choose your loot
+Steven collects cash worth 5000
+Round 8
+Godfather: Steven
+
+Step 1: Loot
+Loot for this round:
+• cash worth 5000
+• cash worth 10000
+• cash worth 5000
+• cash worth 20000
+• diamond worth 1000
+• diamond worth 1000
+• cash worth 10000
+• diamond worth 1000
+• godfather card
+
+Step 2: Choice of the Bullet card
+Choose your action:
+1) Bullet
+2) Click
+
+Frank choose your card
+You have no bang cards, you must choose a click card
+Frank chose CLICK
+
+Dan choose your card
+You have no click cards, you must choose a bang card
+Dan chose BANG
+
+Steven choose your card
+You have no bang cards, you must choose a click card
+Steven chose CLICK
+
+Erik choose your card
+You have no click cards, you must choose a bang card
+Erik chose BANG
+
+
+Step 3: Hold-Up
+
+Frank: Choose a player to point your gun at:
+1) Dan
+2) Steven
+3) Erik
+Frank points their gun at Erik
+
+Dan: Choose a player to point your gun at:
+1) Frank
+2) Steven
+3) Erik
+Dan points their gun at Steven
+
+Steven: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Erik
+Steven points their gun at Dan
+
+Erik: Choose a player to point your gun at:
+1) Frank
+2) Dan
+3) Steven
+Erik points their gun at Steven
+
+Step 4: Godfather's Privilege
+
+Steven: Order another player to change target:
+1) Frank
+2) Dan
+3) Erik
+4) Nobody
+Godfather chose nobody
+
+Step 5: Courage
+Frank: Lay down or stay standing
+Frank stays standing
+Dan: Lay down or stay standing
+Dan stays standing
+Steven: Lay down or stay standing
+Steven stays standing
+Erik: Lay down or stay standing
+Erik stays standing
+
+Step 6: Card effects
+Frank fires a CLICK at Erik who is STANDING
+
+Dan fires a BANG at Steven who is STANDING
+Steven gains 1 wound, they now have 1 wounds
+
+Steven fires a CLICK at Dan who is STANDING
+
+Erik fires a BANG at Steven who is LAYING_DOWN
+
+Step 7: Loot Collection
+Erik: choose your loot
+Erik collects cash worth 5000
+Frank: choose your loot
+Frank collects diamond worth 1000
+Dan: choose your loot
+Dan collects cash worth 10000
+Erik: choose your loot
+Erik collects diamond worth 1000
+Frank: choose your loot
+Frank collects cash worth 20000
+Dan: choose your loot
+Dan collects cash worth 5000
+Erik: choose your loot
+Erik collects cash worth 10000
+Frank: choose your loot
+Frank collects diamond worth 1000
+Dan: choose your loot
+Dan collects godfather card
+
+Results: [(Frank, 107000), (Dan, 271000), (Steven, 123000), (Erik, 41000)]
+
+The winner is: Dan!

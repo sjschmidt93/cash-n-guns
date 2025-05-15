@@ -407,7 +407,7 @@ Step 6: Card effects
 Frank fires a CLICK at Erik who is STANDING
 
 Steven fires a BANG at Frank who is STANDING
-Frank gains 1 wound, they now have 2 wounds
+Frank gains 1 wound, they now have 1 wounds
 
 Erik fires a BANG at Frank who is LAYING_DOWN
 

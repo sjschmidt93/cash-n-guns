@@ -73,7 +73,7 @@ fun gameLoop(
 
     redirectPlayer(playerToRedirect, playersPointingGuns, seed)
 
-    courage(players, seed)
+    courage(players, lootForThisRound, seed)
     println("")
 
     players = resolvePointing(bulletCards, playersPointingGuns, players)
@@ -288,19 +288,26 @@ enum class PlayerPosition {
   STANDING
 }
 
-fun courage(players: MutableList<Player>, seed: Random?) {
+fun courage(players: MutableList<Player>, lootForThisRound: MutableList<LootCard>, seed: Random?) {
   println("Step 5: Courage")
-  players.forEach {
-    println("${it.name}: Lay down or stay standing")
+  players.forEach { player ->
+    println("${player.name}: Lay down or stay standing")
     when (getChoice(2, seed)) {
       1 -> {
-        println("${it.name} lays down")
-        it.playerPosition = PlayerPosition.LAYING_DOWN
-        if (it.wounds > 0 && it.specialPower == SpecialPower.DOCTOR) it.wounds--
+        println("${player.name} lays down")
+        player.playerPosition = PlayerPosition.LAYING_DOWN
+        if (player.wounds > 0 && player.specialPower == SpecialPower.DOCTOR) player.wounds--
+        if (player.specialPower == SpecialPower.STEALTHY) {
+          lootForThisRound.find { loot -> loot.type == LootCardType.CASH && loot.value == 10000 }
+            ?.let { tenThousand ->
+              lootForThisRound.remove(tenThousand)
+              player.lootCards.add(tenThousand)
+            }
+        }
       }
       else -> {
-        println("${it.name} stays standing")
-        it.playerPosition = PlayerPosition.STANDING
+        println("${player.name} stays standing")
+        player.playerPosition = PlayerPosition.STANDING
       }
     }
   }

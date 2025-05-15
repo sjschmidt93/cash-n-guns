@@ -1,3 +1,8 @@
+Frank has special power GREEDY
+Dan has special power PROFESSIONAL
+Steven has special power CUNNING
+Erik has special power GOOD_FRIEND
+[Player(name=Frank, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=GREEDY), Player(name=Dan, wounds=0, numClickCards=5, numBangCards=3, isGodFather=true, playerPosition=STANDING, lootCards=[], specialPower=PROFESSIONAL), Player(name=Steven, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=CUNNING), Player(name=Erik, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=GOOD_FRIEND)]
 Round 1
 Godfather: Dan
 

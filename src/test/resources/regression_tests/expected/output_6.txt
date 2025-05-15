@@ -1,3 +1,8 @@
+Frank has special power PROFESSIONAL
+Dan has special power COLLECTOR
+Steven has special power CUTE
+Erik has special power HUSTLER
+[Player(name=Frank, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=PROFESSIONAL), Player(name=Dan, wounds=0, numClickCards=5, numBangCards=3, isGodFather=true, playerPosition=STANDING, lootCards=[], specialPower=COLLECTOR), Player(name=Steven, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=CUTE), Player(name=Erik, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=HUSTLER)]
 Round 1
 Godfather: Dan
 

@@ -12,10 +12,13 @@ data class Player(
   var playerPosition: PlayerPosition = PlayerPosition.STANDING,
 
   val lootCards: MutableList<LootCard> = mutableListOf(),
+
+  var specialPower: SpecialPower? = null
 )
 
 fun Player.isAlive(): Boolean {
-  return this.wounds <= 3
+  val maxWounds = if (this.specialPower == SpecialPower.UNBREAKABLE) 5 else 3
+  return this.wounds <= maxWounds
 }
 
 enum class BulletCard {

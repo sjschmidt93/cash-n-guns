@@ -16,15 +16,18 @@ class RegressionTest {
     seeds.forEachIndexed { idx, seed ->
       val output = gameLoopTest(seed)
       File("$PATH/actual/output_$idx.txt").writeText(output)
+    }
+    seeds.forEachIndexed { idx, seed ->
+      val rawOutput = File("$PATH/actual/output_$idx.txt").readText()
       val expectedOutput = File("$PATH/expected/output_$idx.txt").readText()
-      assertEquals(expectedOutput, output, "Outputs do not match for idx=$idx")
+      assertEquals(expectedOutput, rawOutput, "Outputs do not match for idx=$idx")
     }
   }
 
   @Test
   fun `unseeded game runs should produce different results`() {
-    val firstRun = gameLoopTest(null)
-    val secondRun = gameLoopTest(null)
+    val firstRun = gameLoopTest()
+    val secondRun = gameLoopTest()
     
     assertNotEquals(firstRun, secondRun)
   }

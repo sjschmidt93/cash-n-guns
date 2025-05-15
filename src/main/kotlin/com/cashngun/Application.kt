@@ -19,7 +19,7 @@ fun main() {
 }
 
 fun gameLoopTest(
-  seed: Random?
+  seed: Random = Random.Default
 ): String {
   val outputStream = ByteArrayOutputStream()
   val originalOut = System.out
@@ -35,7 +35,7 @@ fun gameLoopTest(
 }
 
 fun gameLoop(
-  seed: Random? = null
+  seed: Random = Random.Default
 ) {
   val lootDeck = getInitialDeck(seed).toMutableList()
 
@@ -47,6 +47,10 @@ fun gameLoop(
     Player(name = "Steven"),
     Player(name = "Erik")
   )
+  val specialPowers = SpecialPower.entries.toTypedArray().toList().shuffled(seed)
+  players.forEachIndexed { index, player ->
+    player.specialPower = specialPowers[index]
+  }
 
   val bulletCardDiscardPile = mutableListOf<BulletCard>()
 

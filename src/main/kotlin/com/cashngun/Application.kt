@@ -219,22 +219,24 @@ fun resolvePointing(
 
 fun playersPointGuns(players: List<Player>, seed: Random?): MutableList<Pair<Player, Player>> {
   println("Step 3: Hold-Up")
-  val playerPairs = players.map { player ->
-    println("\n${player.name}: Choose a player to point your gun at:")
+  val playerPairs =  players
+      .sortedBy { if (it.specialPower == SpecialPower.KID) 1 else 0 }
+      .map { player ->
+        println("\n${player.name}: Choose a player to point your gun at:")
 
-    val otherPlayers = players.filterNot { p -> p.name == player.name }
+        val otherPlayers = players.filterNot { p -> p.name == player.name }
 
-    otherPlayers.forEachIndexed { index, it ->
-      println("${index + 1}) ${it.name}")
-    }
+        otherPlayers.forEachIndexed { index, it ->
+          println("${index + 1}) ${it.name}")
+        }
 
-    val playerToPointAtPrompt = getChoice(otherPlayers.size, seed)
+        val playerToPointAtPrompt = getChoice(otherPlayers.size, seed)
 
-    val playerToPointAt = playerToPointAtPrompt - 1
-    println("${player.name} points their gun at ${otherPlayers[playerToPointAt].name}")
+        val playerToPointAt = playerToPointAtPrompt - 1
+        println("${player.name} points their gun at ${otherPlayers[playerToPointAt].name}")
 
-    Pair(player, otherPlayers[playerToPointAt])
-  }
+        Pair(player, otherPlayers[playerToPointAt])
+      }
 
   println("")
 

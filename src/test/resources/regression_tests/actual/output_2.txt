@@ -1,3 +1,8 @@
+Frank has special power DOCTOR
+Dan has special power JUNK_DEALER
+Steven has special power KID
+Erik has special power VULTURE
+[Player(name=Frank, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=DOCTOR), Player(name=Dan, wounds=0, numClickCards=5, numBangCards=3, isGodFather=true, playerPosition=STANDING, lootCards=[], specialPower=JUNK_DEALER), Player(name=Steven, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=KID), Player(name=Erik, wounds=0, numClickCards=5, numBangCards=3, isGodFather=false, playerPosition=STANDING, lootCards=[], specialPower=VULTURE)]
 Round 1
 Godfather: Dan
 

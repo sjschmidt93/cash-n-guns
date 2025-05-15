@@ -52,6 +52,10 @@ fun gameLoop(
     player.specialPower = specialPowers[index]
   }
 
+  players.forEach { println("${it.name} has special power ${it.specialPower}") }
+
+  println(players.toString())
+
   val bulletCardDiscardPile = mutableListOf<BulletCard>()
 
   while(lootDeck.isNotEmpty()) {
@@ -217,7 +221,7 @@ fun resolvePointing(
   return players.filter { player -> player.isAlive() }.toMutableList()
 }
 
-fun playersPointGuns(players: List<Player>, seed: Random?): MutableList<Pair<Player, Player>> {
+fun playersPointGuns(players: List<Player>, seed: Random = Random.Default): MutableList<Pair<Player, Player>> {
   println("Step 3: Hold-Up")
   val playerPairs =  players
       .sortedBy { if (it.specialPower == SpecialPower.KID) 1 else 0 }

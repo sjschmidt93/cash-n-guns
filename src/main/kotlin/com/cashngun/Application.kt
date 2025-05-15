@@ -290,6 +290,7 @@ fun courage(players: MutableList<Player>, seed: Random?) {
       1 -> {
         println("${it.name} lays down")
         it.playerPosition = PlayerPosition.LAYING_DOWN
+        if (it.wounds > 0 && it.specialPower == SpecialPower.DOCTOR) it.wounds--
       }
       else -> {
         println("${it.name} stays standing")
